@@ -31,7 +31,7 @@ GVR = {
 # seting up defaults defaults
 CEOS_IMAGE = 'ceos:latest'
 VMX_IMAGE = 'vrnetlab/vr-vmx:17.2R1.13'
-OpenJNPR_IMAGE = 'michaelph/knetlab:openjnpr-v0.1'
+OpenJNPR_IMAGE = 'juniper/openjnpr-container-vmx:bionic'
 CSR_IMAGE = 'vrnetlab/vr-csr:16.04.01'
 XRV_IMAGE = 'vrnetlab/vr-xrv:6.1.2'
 CONF_DIR = './config'
