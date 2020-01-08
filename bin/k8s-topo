@@ -142,6 +142,8 @@ def parse_endpoints(devices, endpoints, link, idx):
             device = devices.get(device_name, XRV(device_name))  
         elif 'vmx' in device_name.lower():
             device = devices.get(device_name, VMX(device_name))
+        elif 'openjnpr' in device_name.lower():
+            device = devices.get(device_name, OpenJNPR(device_name))
         elif 'csr' in device_name.lower():
             device = devices.get(device_name, CSR(device_name))
         elif any(image in device_name.lower() for image in CUSTOM_IMAGE.keys()):
@@ -538,6 +540,18 @@ class VMX(Device):
 
     def update_entry(self):
         self.entry_cmd = f'ssh -p {self.outside} vrnetlab@localhost'
+
+class OpenJNPR(Device):                        
+    def __init__(self, *args, **kwargs):                       
+        super().__init__(*args, **kwargs) 
+        self.sleep += 10
+        self.image =  VMX_IMAGE                                
+        self.type = 'openjnpr-vmx'                                       
+        # self.args = ['--meshnet', '--trace']
+        # self.constraints = {"cpu": "1", "memory": "5Gi"}
+
+    def update_entry(self):
+        # self.entry_cmd = f'ssh -p {self.outside} vrnetlab@localhost'
 
 class CSR(Device):                        
     def __init__(self, *args, **kwargs):                       
